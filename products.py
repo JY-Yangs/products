@@ -1,18 +1,32 @@
-# 在寫一個讀取檔案的動作
+import os # operating system, "os"為"標準函式庫"裡面就有的東西可以直接import進來"這個模組"
+
 products = [] # 先創一個空清單
-with open('products.csv', 'r', encoding = 'utf-8') as f: #之前寫得檔案用utf-8寫, 所以讀取也要用utf-8才讀的到
-	for line in f: # 讀取檔案f, 會一行一行讀取, 把暫時變數稱作"line"(任意名稱都可)
-		if '商品,價格' in line:
-			continue # 功能是"直接跳到下一迴"然後繼續 ; break是直接跳出迴圈
-		name, price = line.strip().split(',') # 先strip掉換行符號\n, 再用','去切割
-		# 由左至右: line先strip()在split()
-		# split()這個函式可以用來切割東西
-		# split()裡面填"字串", 則依照"填的那個字串"做切割
-		# split()切割完的結果是"清單"
-		# 因為已經知道切完的結果會有"左右兩塊"(去看讀取的檔案就知), 所以等號左邊的暫時變數可以這樣設定" name, price "
-		# strip()可以把換行符號(\n)、空白去掉
-		products.append([name, price])
-print(products)
+
+if os.path.isfile('products.csv'): # 檢查檔案在不在
+# os這個模組裡面"的"path模組裡面"的"isfile()這個功能 的意思
+# isfile()這個功能可以檢查檔案在不在
+# isfile('products.csv')這個寫法可確定在跟"這個pythont程式"相同資料夾內有沒有要找的那個檔案(相對路徑)
+# isfile()如果要確定別的地方的檔案在不在, 就要填"絕對路徑"
+	print('yeah! 找到檔案了!')
+	# 在來寫一個讀取檔案的動作
+	with open('products.csv', 'r', encoding = 'utf-8') as f: #之前寫得檔案用utf-8寫, 所以讀取也要用utf-8才讀的到
+		for line in f: # 讀取檔案f, 會一行一行讀取, 把暫時變數稱作"line"(任意名稱都可)
+			if '商品,價格' in line:
+				continue # 功能是"直接跳到下一迴"然後繼續 ; break是直接跳出迴圈
+			name, price = line.strip().split(',') # 先strip掉換行符號\n, 再用','去切割
+			# 由左至右: line先strip()在split()
+			# split()這個函式可以用來切割東西
+			# split()裡面填"字串", 則依照"填的那個字串"做切割
+			# split()切割完的結果是"清單"
+			# 因為已經知道切完的結果會有"左右兩塊"(去看讀取的檔案就知), 所以等號左邊的暫時變數可以這樣設定" name, price "
+			# strip()可以把換行符號(\n)、空白去掉
+			products.append([name, price])
+	print(products)
+else:
+	print('找不到檔案.....')
+
+
+
 
 # 讓使用者輸入
 while True:
