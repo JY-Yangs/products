@@ -18,3 +18,9 @@ print(products)
 # 右邊的0: 子清單的位置 => a0
 
 print(products[0][0]) # 印出來確認
+
+for p in products: # 確認2為清單用for loop印出來是什麼
+	print(p)
+
+for p in products:
+	print(p[0], '的價格是', p[1])
