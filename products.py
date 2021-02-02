@@ -4,23 +4,17 @@ while True:
 	if name == 'q': #quite
 		break
 	price = input('請輸入商品價格: ') # 放在break下面是因為在商品名稱輸入"q"之後就要跳出迴圈了, 不用再問價格
-	# sub_list_p = []
-	# sub_list_p.append(name)
-	# sub_list_p.append(price)
-	sub_list_p = [name, price] # 7 - 9 行可以直接這樣寫:
-	products.append(sub_list_p) # 把一個清單裝進另一個清單裡面(二維清單)
-	
-	# products.append([name, price]) 7 - 11行都不寫，直接寫13行也行
+	products.append([name, price])
 print(products)
-
-# 二維清單的存取方式: product[0][0] => ex: products = [[a0,b0],[c1,d1]]
-# 左邊的0: 大清單的位置 => [a0,b0]
-# 右邊的0: 子清單的位置 => a0
-
-print(products[0][0]) # 印出來確認
-
-for p in products: # 確認2為清單用for loop印出來是什麼
-	print(p)
 
 for p in products:
 	print(p[0], '的價格是', p[1])
+
+# note1: 'abc' + '123' = 'abc123'
+# note2: 'abc' * 3 = 'abcabcabc'
+
+with open('products.csv', 'w') as f: # 電腦原先如果沒有products.txt就會產生此檔案, 有的話會覆蓋掉舊檔案
+	for p in products:
+		f.write(p[0] + ',' + p[1] + '\n') # 這一行才是真正的開始寫入
+		# 要把把資料寫入檔案f就要這樣寫: f.write()
+		# \n是"換行符號"
