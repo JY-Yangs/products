@@ -51,6 +51,7 @@ def write_file(filename, products):
 
 
 def main():
+	products = [] # 加這個很重要, 如果一開始沒檔案走到else印完'找不到檔案.....'之後的"products = user_input(products)"裡面會有一段"products.append([name, price])"就會根本不知道要append到哪裡(因為根本還沒有"product這個清單"可以append)
 	filename = 'products.csv'
 	if os.path.isfile(filename): # 檢查檔案在不在
 		# os這個模組裡面"的"path模組裡面"的"isfile()這個功能 的意思
